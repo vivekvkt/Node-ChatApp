@@ -7,13 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon  server/server.js"
   },
-  "engines":{
-   "node": "8.11.1"
+  "engines": {
+    "node": "8.11.1"
   },
   "author": "vivek",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "socket.io": "^2.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.17.3"
