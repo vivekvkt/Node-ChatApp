@@ -3,6 +3,8 @@ const express = require('express');
 
 const http = require('http');
 const socketIO = require('socket.io');
+
+const {generateMessage}= require('./utils/message');
 const publicPath = path.join(__dirname, '../public');
 
 var app = express();
@@ -20,11 +22,58 @@ io.on('connection', (socket)=>{
 
 	console.log('new user connected');
 
+
+
+
+	socket.emit('newMessage', generateMessage('Admin', 'welcome to the chat App'));
+	socket.broadcast.emit('newMessage', generateMessage('Admin', 'new joiner'));
+
+	
+	// socket.emit('newMessage' ,{
+ //        from: "Admin",
+ //        text: "thanks for joining chat app",
+ //        CreatedAt: new Date().getTime()
+
+
+
+	// });
+
+	// socket.emit('newMessage' ,{
+ //        from: "Admin",
+ //        text: "new user joining",
+ //        CreatedAt:new Date().getTime()
+
+
+
+	// });
+
+
+	socket.on('createMessage', (message)=>{
+
+		console.log('createMessage', message);
+
+		io.emit('newMessage',generateMessage(message.from, message.text));
+
+         // from:message.from,
+         // text:message.text,
+         // CreatedAt:new Date().getTime()
+
+		//});
+	});
+
+
 	socket.on('disconnect', ()=>{
 
     console.log("user was disconnected");
 
 	});
+
+	
+
+ socket.on('createEmail', function(new_email){
+ 	console.log('createEmail', new_email);
+ });
+
 });
 
 
