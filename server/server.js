@@ -54,7 +54,8 @@ io.on('connection', (socket)=>{
 
 		io.emit('newMessage',generateMessage(message.from, message.text));
 
-		callback('this is from server');
+		//callback('this is from server');
+		callback();
 
    });
 

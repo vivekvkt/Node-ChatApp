@@ -3,25 +3,33 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Socket IO</title>
+
+	<link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-	<h1> hello </h1>
-	<p>hello socket chat Appp</p>
+<body  class="chat">
+	<div class ="chat__sidebar">
+		<h3>People<h3>
+		<div id = "users"></div>
+	</div>
+<div class = "chat__main">
 
+     <ol id="messages" class ="chat__messages"></ol>
 
-   <ol id="messages"></ol>
+     <div class = "chat__footer">
+     	<form id="message-form">
 
-
-
-    <form id="message-form">
-
-    	<input name ="message" type="text" placeholder="enter the message"/>
+    	<input name ="message" type="text" placeholder="enter the message" autofocus autocomplete="off"/>
     	<button>send</button>
     </form>
 
-    <button id = "send-location">Send Location</button>
+    <button id = "send-location">Send location</button>
+
+     </div>
+
+</div>
 
 
+  
 
 
 
