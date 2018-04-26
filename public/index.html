@@ -2,43 +2,31 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Socket IO</title>
+	<title>Join | ChatApp</title>
+	<meta charset="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
 	<link rel="stylesheet" href="/css/style.css">
 </head>
-<body  class="chat">
-	<div class ="chat__sidebar">
-		<h3>People<h3>
-		<div id = "users"></div>
-	</div>
-<div class = "chat__main">
-
-     <ol id="messages" class ="chat__messages"></ol>
-
-     <div class = "chat__footer">
-     	<form id="message-form">
-
-    	<input name ="message" type="text" placeholder="enter the message" autofocus autocomplete="off"/>
-    	<button>send</button>
-    </form>
-
-    <button id = "send-location">Send location</button>
-
-     </div>
+<body class = "centered-form">
+	<div class = "centered-form_form">
+		
+  <form action="./chat.html">
+  	<div class="form-field">
+  		<h3> Join A Chat</h3>
+  	</div>
+    <div class = "form-field">
+    	<label>Display Name</label>
+    	<input type = "text" name = "name" autofocus/>
+    </div>
+  	<div class = "form-field">
+  		<label>Chat Room</label>
+  		<input type ="text" name ="room"/>
+  	</div>
+  	<div class = "form-field">
+  		<button>Join</button>
+  	</div>
+  </form>
 
 </div>
-
-
-  
-
-
-
-
-
-
-	<script src ="/socket.io/socket.io.js"></script>
-	<script src = "/js/libs/jquery-3.3.1.min.js"></script>
-
-	<script src ="/js/index.js"></script>
 </body>
 </html>
