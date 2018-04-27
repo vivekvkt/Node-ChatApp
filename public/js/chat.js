@@ -54,7 +54,18 @@ var socket = io();
    console.log('disconnect from server');
    });
 
+  socket.on('updateUserList',function(users){
 
+
+    var ol = jQuery('<ol></ol>');
+    users.forEach(function(user){
+
+      ol.append(jQuery('<li></li>').text(user));
+    });
+
+    jQuery('#users').html(ol);
+     //console.log('users list', users);
+  });
 
    socket.on('newMessage', function(message){
 
