@@ -60,7 +60,7 @@ var socket = io();
     var ol = jQuery('<ol></ol>');
     users.forEach(function(user){
 
-      ol.append(jQuery('<li></li>').text(user));
+      ol.append(jQuery('<li onclick="setTarget(event)"></li>').text(user));
     });
 
     jQuery('#users').html(ol);
@@ -130,6 +130,7 @@ var socket = io();
     socket.emit('createMessage',{
 
       from:'User',
+      to:window.chatTarget,
       text:messageTextbox.val()
       //text:jQuery('[name=message]').val()
 
@@ -159,7 +160,8 @@ var socket = io();
    	locationButton.removeAttr('disabled').text('sending location...');
 
    socket.emit('createLocationMessage',{
-
+ to:window.chatTarget,
+ isRoom:window.isRoom,
    	latitude:position.coords.latitude,
    	longitude:position.coords.longitude
    });
@@ -171,4 +173,9 @@ var socket = io();
 
 })
 
+window.chatTarget='';
+function setTarget(e){
+ let name = e.target.innerText
+ window.chatTarget=name;
 
+}

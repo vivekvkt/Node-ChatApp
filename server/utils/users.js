@@ -1,3 +1,5 @@
+
+/*
 [{
 
 id:'104839848489',
@@ -5,6 +7,7 @@ name: 'vivek',
 room: 'the offce fan'
 
 }]
+*/
 
 class Users{
 
@@ -36,15 +39,17 @@ class Users{
 
 	}
 
-	getUserList(room)
-	{
+	getSocketId(name){
+     return this.users.filter((user)=>user.name==name)[0].id;
+	}  
 
-  var users = this.users.filter((user)=>user.room === room);
+	getUserList(room){
+	  var users = this.users.filter((user)=>user.room === room);
 
-  var namesArray = users.map((user)=>user.name);
+	  var namesArray = users.map((user)=>user.name);
 
-  return namesArray;
-
+	  return namesArray;
 	}
+
 }
 module.exports= {Users};

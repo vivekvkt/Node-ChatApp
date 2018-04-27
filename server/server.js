@@ -82,16 +82,25 @@ if(!isRealString(params.name) || !isRealString(params.room)){
 
 
 });
+//when user chats
 
 	socket.on('createMessage', (message, callback)=>{
 
-		//console.log('createMessage', message);
-
+		console.log('createMessage', message);
+        var targetUser = message.to;
+        var targetSocketId = users.getSocketId(targetUser);
+        console.log('targetSocketId ',targetSocketId)
 		var user = users.getUser(socket.id);
 
 		if(user && isRealString(message.text)){
+     if(message.isRoom){
+     	io.to(user.room).emit('newMessage',generateMessage(user.name, message.text));
+     }
+     else
+     {
 
-		io.to(user.room).emit('newMessage',generateMessage(user.name, message.text));
+		socket.to(targetSocketId).emit('newMessage',generateMessage(user.name, message.text));
+     }
 	}
 
 		//callback('this is from server');
@@ -106,7 +115,13 @@ if(!isRealString(params.name) || !isRealString(params.room)){
 		var user = users.getUser(socket.id);
 		if(user){
 
-			io.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name, coords.latitude, coords.longitude));
+        var targetUser = coords.to;
+        var targetSocketId = users.getSocketId(targetUser);
+         if(message.isRoom){
+     	io.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name, coords.latitude, coords.longitude));
+     }else{
+			socket.to(targetSocketId).emit('newLocationMessage', generateLocationMessage(user.name, coords.latitude, coords.longitude));
+     }
 		}
 
 		//io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitude, coords.longitude));
